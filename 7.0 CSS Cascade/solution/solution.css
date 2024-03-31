@@ -1,0 +1,25 @@
+#outer-box {
+  background-color: purple;
+  /*tum divler box classina tabi oldugu izin padding 10px hepsine uygulanir
+  yani buraya padding: 10px eklersem bir anlam ifade etmez*/
+}
+
+.box {
+  background-color: blue;
+  padding: 10px;
+}
+/*bu iki class ayni specifik dereceye sahip dolayisiyla pozisyonlarini degirsitirsem sonraki oncekini overrride eder
+yani inner box larin arka plan rengi kirmizi olmaz mavi olarak kalir*/
+.inner-box {
+  background-color: red;
+}
+
+p {
+  color: yellow;
+  margin: 0;
+  padding: 0;
+}
+
+.white-text {
+  color: white;
+}
