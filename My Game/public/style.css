@@ -1,0 +1,52 @@
+body {
+    background-color: #5F9DF7;
+}
+
+.container {
+    width: 66%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+    
+}
+
+.zoo {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 100px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cage {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+
+.animalcontainer {
+    display: grid;
+    gap: 5px;
+    width: 60%;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+   place-items: center;
+    
+}
+
+.bigzoo {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+}
