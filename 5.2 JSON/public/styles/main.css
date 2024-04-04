@@ -1,0 +1,86 @@
+html {
+  height: 100%;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #e26e5c;
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='86.602' height='50' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0,0%,100%,1)'/><path d='M-.15 6.75 21.5-5.75M-.15.238l21.65-12.5M0 6.75l-21.65-12.5M0 .238l-21.65-12.5M0 12.5v-25L21.65-25M0 12.5-21.65 0v-25L0-37.5 21.65-25V0zm86.452 44.25 21.65-12.5m-21.65 5.988 21.65-12.5m-21.65 5.988 21.65-12.5m-21.5 25.524-21.65-12.5m21.65 5.988-21.65-12.5m21.65 5.988-21.65-12.5m21.65 6.274L64.952 25m21.65 37.5v-25l21.65-12.5m-43.3 25V25l21.65-12.5 21.65 12.5v25l-21.65 12.5Zm21.5-43.25 21.65-12.5M86.452.238l21.65-12.5M86.602 6.75l-21.65-12.5M86.601.238l-21.65-12.5M86.601 12.5v-25l21.65-12.5m-21.65 37.5L64.952 0v-25l21.65-12.5 21.65 12.5V0zM43.15 31.75l21.651-12.5m-21.65 5.988 21.65-12.5m-21.65 5.988 21.65-12.5m-21.5 25.524-21.65-12.5m21.65 5.988-21.65-12.5m21.65 5.988-21.65-12.5M43.3 12.5 21.651 0M43.3 37.5v-25L64.951 0m0 25-21.65 12.5L21.651 25V0L43.3-12.5 64.951 0zm-21.65 37.5L21.651 50M43.3 87.5v-25L64.951 50m0 0v25l-21.65 12.5L21.651 75V50L43.3 37.5ZM-.15 56.75 21.5 44.25M-.15 50.238l21.65-12.5M-.15 43.726l21.65-12.5M0 56.75l-21.65-12.5M0 50.238l-21.65-12.5M0 43.726l-21.65-12.5M0 37.5-21.65 25M0 62.5v-25L21.65 25m0 0v25L0 62.5-21.65 50V25L0 12.5z'  stroke-linecap='square' stroke-width='1.5' stroke='hsla(258.5,59.4%,59.4%,1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(-42,-8)' fill='url(%23a)'/></svg>"); 
+  text-align: center;
+}
+
+h1 {
+  display: inline;
+  font-size: 5rem;
+  text-align: center;
+  color: #e26e5c;
+  background-color: white;
+}
+
+h2 {
+  color: #e26e5c;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+button {
+  font-size: 5rem;
+}
+
+.buttons button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 10px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.buttons button img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+#recipeContainer {
+  background-color: white;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#recipeTitle {
+  color: #e26e5c;
+}
+
+#ingredientsList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#ingredientsList li {
+  margin-bottom: 10px;
+  color: #555;
+}
