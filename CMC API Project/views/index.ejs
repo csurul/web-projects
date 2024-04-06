@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CMC API</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Titan+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+</head>
+
+<body>
+  <h1>Response from CoinMarketCap</h1>
+  <div class="container">
+    <div class="response-area">
+      <p>
+        <%= content %>
+      </p>
+    </div>
+    <form id="myForm" method="post">      
+      <input id="pull" type="submit" value="Send Request" formaction="/pull">
+      <!--<input id="post" type="submit" value="POST" formaction="/post-secret">
+      <input id="put" type="submit" value="PUT" formaction="/put-secret">
+      <input id="patch" type="submit" value="PATCH" formaction="/patch-secret">
+      <input id="delete" type="submit" value="DELETE" formaction="/delete-secret">-->
+    </form>
+  </div>
+</body>
+
+</html>
