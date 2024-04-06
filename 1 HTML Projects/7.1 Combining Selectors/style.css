@@ -1,0 +1,36 @@
+/* Write your code here: */
+/*Group selector*/
+h1, h2 {
+    color: blueviolet;
+}
+
+/*Child selector*/
+.box > p {
+    color: red;
+}
+
+/*Descendant selector*/
+.box li {
+    color: blue;
+}
+
+/*Chaining selectors*/
+li.done {
+    color: seagreen;
+}
+
+/*Combining combiners
+1- We can do it by parent > child selector
+2- Or doing it by Descendant selector ancestor selector descendant selector
+*/
+/*1*/
+ul > p.done{
+    color: aqua;
+    font-size: 0.5em;
+}
+
+/*2*/
+ul p.done{
+    color: aqua;
+    font-size: 0.5em;
+}
