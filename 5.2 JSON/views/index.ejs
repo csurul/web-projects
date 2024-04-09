@@ -25,7 +25,7 @@
           <li> <%= recipe.ingredients.protein.name %>, <%= recipe.ingredients.protein.preparation %> </li>
           <li> <%= recipe.ingredients.salsa.name %>, <%= recipe.ingredients.salsa.spiciness %></li>
 
-          <% for(var i=0; i<recipe.ingredients.toppings.length; i++) { %>
+          <% for(var i = 0; i < recipe.ingredients.toppings.length; i++) { %>
             <li><%= recipe.ingredients.toppings[i].quantity %> of <%= recipe.ingredients.toppings[i].name %></li>
           <% } %>
         </ul>
