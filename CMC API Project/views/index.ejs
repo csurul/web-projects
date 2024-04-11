@@ -1,11 +1,45 @@
 <%- include("partials/header.ejs") %>
-  <h1>Response from CoinMarketCap</h1>
-  <div>
-    <div class="response-area">
+<div class="container">  
+  <div class="item item-1">
+    <h1>Crypto Stats by CoinMarketCap</h1>
+  </div>
+  <div class="item item-2">
+    
+    <form id="searchForm" method="post">
+      <input id="search-input" type="text" name="slug" placeholder="search a cryptocurrency" >
+      <input id="search-btn" type="submit" value="Search" formaction="/search_crypto">
+    </form>
+  </div>
+  <div class="item info-container">
+    <div id="global-metrics"> 
+      <h2>Global Metrics</h2>
+      <% if (!locals.metrics) { %> 
+        <h2> No data found </h2>
+      <% } else { %>
+        <label>Total Exchanges: </label> <%= metrics.total_exchanges %><br>
+        <label>Total Cryptocurrencies: </label> <%= metrics.total_cryptocurrencies %><br>
+        <label>Btc Dominance: </label> <%= Math.floor(metrics.btc_dominance * 100) / 100  %><br>
+      <% } %>
+    </div>
+
+    <div id="top-exchanges"> 
+      <h2>Top Exchanges</h2>
+      <% if (!locals.exchanges) { %> 
+        <h2> No data found </h2>
+      <% } else { %>
+        <ul>
+          <% for (let index = 0; index < exchanges.length; index++) { %>
+            <li> ID: <%= exchanges[index].id %> Name: <%= exchanges[index].name %> Status: <%= (exchanges[index].is_active) ? "Active" : "Not Active"  %></li>
+          <% }; %> 
+        </ul>  
+       <% } %>
+    </div>
+
+    <div id="top-crypto"> 
+      <h2>Top Cryptocurrencies</h2>
       <% if (!locals.data) { %> 
         <h2> No data found </h2>
       <% } else { %>
-        <h2>data boyutu <%= data.length %></h2>
         <ul>
           <% for (let index = 0; index < ids.length; index++) { %>
             <li> ID: <%= data[ids[index]].id %> Symbol: <%= data[ids[index]].symbol %> Name: <%= data[ids[index]].name %></li>
@@ -13,12 +47,14 @@
         </ul>  
        <% } %>
     </div>
+  </div>
+  <div class="4">
     <form id="myForm" method="post">      
-      <input class="btn btn-success" type="submit" value="Cryptocurreny Map" formaction="/map_cryptocurreny">
-      <input class="btn btn-success" type="submit" value="Exchange List" formaction="/list_exchange">      
-      <!--<input id="put" type="submit" value="PUT" formaction="/put-secret">
+      <input class="btn btn-success" type="submit" value="Refresh" formaction="/map_cryptocurreny">
+      <!--<input class="btn btn-success" type="submit" value="Exchange List" formaction="/list_exchange">      
+      <input id="put" type="submit" value="PUT" formaction="/put-secret">
       <input id="patch" type="submit" value="PATCH" formaction="/patch-secret">
       <input id="delete" type="submit" value="DELETE" formaction="/delete-secret">-->
     </form>
   </div>
-<%- include("partials/footer.ejs") %>
+</div>
