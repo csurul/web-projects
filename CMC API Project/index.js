@@ -6,8 +6,6 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-
-
 import fs from "fs";
 
 const parentFolder = __dirname.substring(0, __dirname.lastIndexOf("/"));
@@ -30,21 +28,9 @@ const port = 3000;
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let result = null;
-let result2 = null;
-
 app.get("/", async (req, res) => {
   res.render("index.ejs", { data: "" });
 });
-
-app.post("/list_exchange", async (req, res) => {
-  
-  
-});
-
-async function ListExchange() {
-  
-}
 
 let resultMetrics;
 let resultCryptos;
@@ -94,7 +80,7 @@ app.post("/map_cryptocurreny", async (req, res) => {
   console.log(cryptoInfoLink);
 
   try {
-    result2 = await axios.get(cryptoInfoLink, {
+    resultCryptos = await axios.get(cryptoInfoLink, {
       headers: {
         'X-CMC_PRO_API_KEY': apiKey,
       },
@@ -104,42 +90,44 @@ app.post("/map_cryptocurreny", async (req, res) => {
     res.status(500).send(error.message);
   }
 
-  if (result2) {
+  if (resultCryptos) {
     //console.log(result2.data.data);
     //console.log(result2.data.data[cryptoIDS[1]].id + result2.data.data[cryptoIDS[1]].symbol);
    
-    res.render("index.ejs", { metrics: resultMetrics.data.data, exchanges: resultExchanges.data.data, data: result2.data.data, ids: cryptoIDS });
+    res.render("index.ejs", { metrics: resultMetrics.data.data, exchanges: resultExchanges.data.data, data: resultCryptos.data.data, ids: cryptoIDS });
   } else {
     res.render("index.ejs", { data: "Response is undefined" });
-  }
-
-  /*if (result) {
-    console.log(result.data.data);
-
-    res.render("index.ejs", { data: result.data.data });
-  } else {
-    res.render("index.ejs", { data: "Response is undefined" });
-  }*/
-  
+  }  
 });
 
-
+let cryptoInfo;
 app.post("/search_crypto", async (req, res) => {
+  // try {
+  //   console.log(req.body.slug); 
+  //   cryptoInfo = await axios.get(`https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?symbol=${cryptoInfo}`, {
+  //     headers: {
+  //       'X-CMC_PRO_API_KEY': apiKey,
+  //     },
+  //   });
+  // } catch (error) {
+  //   cryptoInfo = null;
+  //   res.send(error.message);
+  // }
+
   try {
-    console.log(req.body.slug); 
-    result = await axios.get('https://pro-api.coinmarketcap.com/v2/cryptocurrency/info?slug=' + req.body.slug, {
+    resultCryptos = await axios.get(`https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest`, {
       headers: {
         'X-CMC_PRO_API_KEY': apiKey,
       },
     });
   } catch (error) {
-    result = null;
-    res.status(500).send(error.message);
+    resultCryptos = null;
+    res .send(error.message);
   }
   
-  if (result) {
-    console.log(result.data);
-    res.render("crypto.ejs", { data: result.data.data });
+  if (resultCryptos) {
+    console.log(resultCryptos.data);
+    res.render("crypto.ejs", { data: resultCryptos.data.data });
   } else {
     res.render("crypto.ejs", { data: "Response is undefined" });
   }
