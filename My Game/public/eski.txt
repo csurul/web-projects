@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My Zoo Animals</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="zoo">
+            <div class="zooitem">
+                <img class="cage" src="images/tom3.png" alt="" />
+            </div>
+            <div class="zooitem">
+                <img class="cage" src="images/tom3.png" alt="" />
+            </div>
+            <div class="zooitem">
+                <img class="cage" src="images/tom3.png" alt="" />
+            </div>
+            <div class="zooitem">
+                <img class="cage" src="images/tom3.png" alt="" />
+            </div>
+            <div class="zooitem">
+                <img class="cage" src="images/tom3.png" alt="" />
+            </div>        
+        </div>
+    
+        <div class="animalcontainer">
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>
+            <div class="item">
+                <img class="bigzoo" src="images/tom3.png" alt="" />
+            </div>      
+        </div>
+    </div>
+    
+
+    <script src="index.js" charset="UTF-8"></script>
+</body>
+</html>
+
+
+
+
+body {
+    background-color: #5F9DF7;
+}
+
+.container {
+    width: 66%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    
+}
+
+.zoo {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 100px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cage {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+
+.animalcontainer {
+    display: grid;
+    gap: 5px;
+    width: 60%;
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+   place-items: center;
+    
+}
+
+.bigzoo {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+}

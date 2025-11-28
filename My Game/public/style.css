@@ -1,52 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
 body {
-    background-color: #5F9DF7;
+    background-color: tomato;
+    background-image: url('axiompattern.png');
 }
 
 .container {
-    width: 66%;
-    margin: auto;
+    min-height: 100vh;
+}
+
+.top {
+    min-height: 35vh;
+
     display: flex;
-    flex-direction: column;
-    height: 100vh;
-    
-    
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.bottom {
+    min-height: 65vh;
+
+    display: grid;
+    grid-template-rows: 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px 100px;
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
 }
 
 .zoo {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    margin-top: 100px;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.cage {
     width: 100px;
     height: 100px;
-    background-color: white;
+    border: 4px dashed #fff;
+    border-radius: 50%;
 }
 
-.animalcontainer {
-    display: grid;
-    gap: 5px;
-    width: 60%;
-    margin-top: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-   place-items: center;
-    
-}
-
-.bigzoo {
+.zoo img {
     width: 100px;
     height: 100px;
-    background-color: white;
+    border-radius: 50%;
 }
 
-.item {
-    display: flex;
-    justify-content: center;
+
+.animals, .animal {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
