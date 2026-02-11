@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>106 Card Royale</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="icon-hearts" viewBox="0 0 32 32">
+        <path
+          fill="currentColor"
+          d="M16 28.5L14.1 26.7C7.3 20.6 2.8 16.5 2.8 11.5 2.8 7.4 6 4.2 10.1 4.2c2.3 0 4.5 1.1 5.9 2.8 1.4-1.7 3.6-2.8 5.9-2.8 4.1 0 7.3 3.2 7.3 7.3 0 5-4.5 9.1-11.3 15.2L16 28.5z"
+        />
+      </symbol>
+      <symbol id="icon-diamonds" viewBox="0 0 32 32">
+        <path fill="currentColor" d="M16 4l12 12-12 12-12-12z" />
+      </symbol>
+      <symbol id="icon-spades" viewBox="0 0 32 32">
+        <path
+          fill="currentColor"
+          d="M16 4C12 4 8 8 8 12c0 3 2 5 4 7-2 1-4 3-4 5v2h16v-2c0-2-2-4-4-5 2-2 4-4 4-7 0-4-4-8-8-8zM14 26h4v2h-4z"
+        />
+      </symbol>
+      <symbol id="icon-clubs" viewBox="0 0 32 32">
+        <path
+          fill="currentColor"
+          d="M16 4c-3 0-5 2-5 5 0 2 1 3 2 4-2 0-5 2-5 5s2 5 5 5c1 0 1 0 2-1 0 1 1 1 2 1s2 0 2-1c1 1 1 1 2 1 3 0 5-2 5-5s-2-5-5-5c1-1 2-2 2-4 0-3-2-5-5-5zM14 26h4v2h-4z"
+        />
+      </symbol>
+      <symbol id="icon-joker" viewBox="0 0 32 32">
+        <path
+          fill="currentColor"
+          d="M16 2l3.5 10.5H30l-8.5 6.5 3.5 10.5-9-6.5-9 6.5 3.5-10.5L2 12.5h10.5z"
+        />
+      </symbol>
+      <symbol id="icon-back-pattern" viewBox="0 0 100 100">
+        <rect width="100" height="100" fill="#1e3c72" />
+        <path
+          d="M0 0l100 100M100 0L0 100"
+          stroke="rgba(255,255,255,0.1)"
+          stroke-width="2"
+        />
+        <circle
+          cx="50"
+          cy="50"
+          r="30"
+          fill="none"
+          stroke="rgba(255,255,255,0.2)"
+          stroke-width="1"
+        />
+      </symbol>
+    </svg>
+
+    <div id="lobby-screen">
+      <header>
+        <h1>Select a Table</h1>
+        <p>4 Players required to start | 106 Cards | 14 Cards per hand</p>
+      </header>
+      <div id="visual-tables-container"></div>
+    </div>
+
+    <div id="game-screen" style="display: none">
+      <button id="exit-btn" onclick="exitTable()">← Leave Table</button>
+
+      <div class="game-container">
+        <div id="active-table-visual">
+          <div id="slot-top" class="chair-slot">
+            <div id="hand-top" class="bot-hand side-hand-top"></div>
+            <div class="user-avatar"></div>
+            <span class="player-name">Empty</span>
+          </div>
+          <div id="slot-left" class="chair-slot">
+            <div class="user-avatar"></div>
+            <span class="player-name">Empty</span>
+            <div id="hand-left" class="bot-hand side-hand-left"></div>
+          </div>
+          <div id="slot-right" class="chair-slot">
+            <div class="user-avatar"></div>
+            <span class="player-name">Empty</span>
+            <div id="hand-right" class="bot-hand side-hand-right"></div>
+          </div>
+
+          <div class="central-area">
+            <div id="countdown-display" style="display: none">5</div>
+            <div class="pile-container">
+              <div class="pile-wrapper">
+                <div id="deck-pile" class="pile"></div>
+                <div id="deck-count-label">106</div>
+              </div>
+              <div class="pile-wrapper">
+                <div id="discard-pile" class="pile"></div>
+                <div id="discard-label">DISCARD</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="player-hud">
+          <div id="status-msg">Waiting for players...</div>
+          <div id="my-hand" class="hand-area"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  </body>
+</html>

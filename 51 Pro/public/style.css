@@ -1,0 +1,497 @@
+/* --- Global Styles & Background --- */
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at center, #2c3e50 0%, #000000 100%);
+  color: white;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin-top: 30px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Lobby Screen --- */
+#lobby-screen {
+  width: 100%;
+  text-align: center;
+}
+
+#visual-tables-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+  padding: 40px;
+}
+
+/* --- Lobby Table Wrapper --- */
+.table-wrapper {
+  display: grid;
+  grid-template-areas:
+    ".      ctop    ."
+    "cleft  ctable  cright"
+    ".      cbottom .";
+  gap: 15px;
+  align-items: center;
+  justify-items: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* The Mini-Chairs in Lobby */
+.mini-chair {
+  width: 45px;
+  height: 45px;
+  background: #2ecc71; /* Green for Free */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 4px 0 #27ae60;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+/* Red State (Occupied) */
+.mini-chair.occupied {
+  background: #e74c3c; /* Red for Taken */
+  box-shadow: 0 4px 0 #c0392b;
+  cursor: not-allowed;
+}
+
+/* Grid Positioning */
+.c-top {
+  grid-area: ctop;
+}
+.c-bottom {
+  grid-area: cbottom;
+}
+.c-left {
+  grid-area: cleft;
+}
+.c-right {
+  grid-area: cright;
+}
+
+/* The Table itself */
+.poker-table {
+  grid-area: ctable;
+  width: 100px;
+  height: 70px;
+  background: #1b5e20;
+  border: 4px solid #3e2723;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f1c40f;
+  font-size: 0.8rem;
+  pointer-events: none; /* Make clicking the chairs trigger the join, not the table */
+}
+
+.poker-table:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #f1c40f;
+}
+
+/* --- Game Screen UI --- */
+#exit-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#exit-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+/* --- The Table Layout --- */
+.game-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#active-table-visual {
+  display: grid;
+  width: 700px;
+  height: 400px;
+  grid-template-areas:
+    ".      top    ."
+    "left   center right"
+    ".      bottom .";
+  grid-template-columns: 120px 1fr 120px;
+  grid-template-rows: 100px 1fr 100px;
+  gap: 10px;
+}
+
+.central-area {
+  grid-area: center;
+  display: flex;
+  flex-direction: column; /* Keeps countdown above the piles */
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#active-table-visual {
+  display: grid;
+  width: 900px;
+  height: 500px;
+  grid-template-areas:
+    ".      top    ."
+    "left   center right"
+    ".      bottom .";
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: 150px 1fr 150px;
+  margin: 20px auto;
+}
+
+/* --- Chairs & Players --- */
+.chair-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.user-avatar {
+  width: 65px;
+  height: 65px;
+  background: #333;
+  border: 3px solid #555;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/* Active Turn Glow remains important */
+.user-avatar.active-turn {
+  border-color: #f1c40f;
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+}
+
+/* When someone is sitting in the chair */
+.chair-slot:not(:has(span:contains("Empty"))) .user-avatar {
+  background: #f1c40f; /* Gold for other players */
+  border-color: #fff;
+}
+
+/* Specific styling for YOU (the active player) */
+.user-avatar.active {
+  background: #3498db; /* Bright Blue */
+  border-color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(52, 152, 219, 0.6);
+}
+
+/* Make "Empty" text a bit more visible */
+.player-name {
+  font-size: 0.85rem;
+  color: #95a5a6; /* Silver/Gray */
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
+
+/* When a name is present, make it Gold */
+.chair-slot .player-name:not(:contains("Empty")) {
+  color: #f1c40f;
+}
+#slot-top {
+  grid-area: top;
+}
+#slot-bottom {
+  grid-area: bottom;
+}
+#slot-left {
+  grid-area: left;
+}
+#slot-right {
+  grid-area: right;
+}
+
+/* --- Countdown Timer --- */
+#countdown-display {
+  position: absolute;
+  font-size: 6rem;
+  color: #f1c40f;
+  font-weight: bold;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  z-index: 50;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Pile styling (Deck and Discard) */
+/* Make the piles pop more against the dark background */
+pile-container {
+  display: flex;
+  flex-direction: row; /* This puts them side-by-side */
+  gap: 30px; /* Space between deck and discard */
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pile-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.pile {
+  width: 80px;
+  height: 115px;
+  border-radius: 8px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+#deck-pile:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  border-color: #f1c40f;
+}
+
+/* --- Player Hand Area --- */
+#player-hud {
+  position: fixed;
+  bottom: 20px; /* Lifted slightly from the bottom */
+  width: 100%;
+  height: 200px; /* Increased height for the curve */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 999;
+  pointer-events: none; /* Let clicks pass through to empty space */
+}
+
+#my-hand {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Align to bottom so they grow upwards */
+  height: 180px;
+  padding-left: 65px; /* Matches the negative margin to center the hand */
+}
+
+#status-msg {
+  background: rgba(241, 196, 15, 0.2);
+  border: 1px solid #f1c40f;
+  color: #f1c40f;
+  padding: 5px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hand-area {
+  display: flex;
+  justify-content: center;
+  height: 120px;
+  padding-top: 10px;
+}
+
+/* Card Styling */
+.card {
+  width: 90px;
+  height: 130px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.3);
+
+  /* Crucial: Smooth transition for the hover lift */
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: center bottom;
+  pointer-events: auto;
+}
+.card.red {
+  color: #e74c3c;
+}
+.card.joker {
+  color: #8e44ad;
+}
+.card.back {
+  background: #1e3c72;
+  border: 2px solid white;
+  margin-left: -35px;
+}
+.card.back svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+.card-mini-suit {
+  width: 14px;
+  height: 14px;
+}
+.card-center-suit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35px;
+  height: 35px;
+}
+
+.card:hover {
+  /* We use the variable from JS and simply add a lift and scale */
+  transform: var(--original-transform) translateY(-40px) scale(1.05) !important;
+
+  box-shadow: -5px 15px 25px rgba(0, 0, 0, 0.5);
+  border-color: #f1c40f;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* The Turn Indicator Glow */
+.user-avatar.active-turn {
+  border-color: #f1c40f !important;
+  box-shadow:
+    0 0 25px #f1c40f,
+    0 0 45px rgba(241, 196, 15, 0.4);
+  animation: turnPulse 1.5s infinite;
+}
+
+@keyframes turnPulse {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.3);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Add a "Turn" label above the avatar */
+.active-turn::before {
+  content: "YOUR TURN";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f1c40f;
+  color: black;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 10px;
+}
+.mini-hand-visual {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  height: 60px; /* Smaller than your main hand */
+}
+
+/* Make the cards inside the bot's hand much smaller */
+.mini-hand-visual .card.back {
+  width: 40px;
+  height: 60px;
+  margin-left: -25px; /* Tight overlap */
+  border-width: 1px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure the deck pile card fits its container */
+#deck-pile .card.back {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.bot-hand {
+  display: flex;
+  justify-content: center;
+  height: 60px; /* Smaller than player hand */
+}
+
+/* Adjust card backs for side hands */
+.bot-hand .card.back {
+  width: 35px;
+  height: 55px;
+  margin-left: -25px; /* Tighten overlap for smaller side space */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Left Bot: Rotate 90 degrees clockwise */
+.side-hand-left {
+  transform: rotate(90deg);
+  position: absolute;
+  left: 40px; /* Position it correctly next to the avatar */
+  flex-direction: row;
+}
+
+/* Right Bot: Rotate -90 degrees (270deg) */
+.side-hand-right {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 40px;
+  flex-direction: row;
+}
+
+/* Top Bot: Keep as is but ensure it's positioned */
+#hand-top {
+  margin-top: 10px;
+}
